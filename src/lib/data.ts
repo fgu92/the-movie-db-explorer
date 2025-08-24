@@ -7,8 +7,8 @@ import {
   SearchMovieResponse,
   SearchTVParams,
   SearchTVResponse,
-} from "./types/tmdb-api";
-import { MediaType } from "./types/tmdb-media";
+} from "@/lib/types/tmdb-api";
+import { MediaType } from "@/lib/types/tmdb-media";
 
 // Custom error class
 class TMDBApiError extends Error {
