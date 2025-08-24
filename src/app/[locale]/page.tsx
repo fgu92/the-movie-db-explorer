@@ -1,6 +1,7 @@
 import { searchMedia } from "@/lib/data";
 import { MediaType } from "@/lib/types/tmdb-media";
 import MediaList from "@/ui/search/media-list/media-list";
+import Search from "@/ui/search/search-input/search";
 import { getTranslations } from "next-intl/server";
 
 export default async function Home(props: {
@@ -24,6 +25,8 @@ export default async function Home(props: {
 
   return (
     <main className="flex flex-col gap-8 pt-8 pb-8 items-center">
+      <Search className="pb-12" />
+
       {hasResults ? (
         <MediaList results={response.results} />
       ) : (

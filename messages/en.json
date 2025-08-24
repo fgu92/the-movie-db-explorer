@@ -1,6 +1,12 @@
 {
   "SearchPage": {
     "votes": "{voteAverage, number} {count, plural, one {# vote} other {# votes}}",
+    "movies-placeholder": "Search for a movie",
+    "tv-shows-placeholder": "Search for a TV show",
+    "media-type-select-label": "Media type",
+    "movies-option-text": "Movies",
+    "tv-shows-option-text": "TV Shows",
+    "no-results": "No results found",
     "disclaimer": "This product uses the TMDB API but is not endorsed or certified by TMDB.",
     "switch-to-english": "Switch to English",
     "switch-to-french": "Switch to French"
