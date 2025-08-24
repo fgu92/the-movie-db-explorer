@@ -4,6 +4,17 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "www.themoviedb.org",
+        port: "",
+        pathname: "/t/p/**",
+      },
+    ],
+  },
+
   // Configuration webpack pour résoudre les problèmes de cache
   webpack: (config, { dev }) => {
     if (dev && config.cache) {

@@ -1,5 +1,6 @@
 {
   "SearchPage": {
+    "votes": "{voteAverage, number} ({count, plural, one {# vote} other {# votes}})",
     "disclaimer": "Ce produit utilise l'API TMDB mais n'est ni approuvé ni certifié par TMDB.",
     "switch-to-english": "Passer en anglais",
     "switch-to-french": "Passer en français"
