@@ -1,6 +1,7 @@
 import { searchMedia } from "@/lib/data";
 import { MediaType } from "@/lib/types/tmdb-media";
 import MediaList from "@/ui/search/media-list/media-list";
+import Pagination from "@/ui/search/pagination/pagination";
 import Search from "@/ui/search/search-input/search";
 import { getTranslations } from "next-intl/server";
 
@@ -22,13 +23,22 @@ export default async function Home(props: {
   const response = await searchMedia(query, currentPage, mediaType);
 
   const hasResults = response.results && response.results.length > 0;
+  const hasSeveralPages = response.total_pages >= 2;
+
+  const PaginationComponent = hasSeveralPages ? (
+    <Pagination totalPages={response.total_pages} />
+  ) : null;
 
   return (
     <main className="flex flex-col gap-8 pt-8 pb-8 items-center">
       <Search className="pb-12" />
 
       {hasResults ? (
-        <MediaList results={response.results} />
+        <>
+          {PaginationComponent}
+          <MediaList results={response.results} />
+          {PaginationComponent}
+        </>
       ) : (
         <div className="flex flex-col items-center gap-4 text-center max-w-md">
           <div className="text-6xl">🎬</div>
