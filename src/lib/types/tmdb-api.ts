@@ -1,4 +1,4 @@
-import { DateString, Movie, TVShow } from "./tmdb-media";
+import { DateString, Movie, TVShow } from "@/lib/types/tmdb-media";
 
 type CommaOrPipeSeparatedIds = string;
 
