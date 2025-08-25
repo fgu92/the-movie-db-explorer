@@ -1,6 +1,6 @@
 import Home from "@/app/[locale]/page";
 import { searchMedia } from "@/lib/data";
-import { MediaType } from "@/lib/types/tmdb-media"
+import { MediaType } from "@/lib/types/tmdb-media";
 import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 

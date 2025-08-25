@@ -266,7 +266,7 @@ the-movie-db-explorer-project/
 ├── .env.test                # Environment variables for testing
 ├── .eslintrc.json           # ESLint configuration
 ├── .gitignore               # Git ignored files
-├── next.config.js           # Next.js configuration
+├── next.config.ts           # Next.js configuration
 ├── package.json             # npm dependencies and scripts
 ├── tsconfig.json            # TypeScript configuration
 ├── vitest.config.ts         # Vitest configuration
