@@ -239,14 +239,38 @@ TMDB_VOTE_COUNT_GTE=100
 ## Project Structure
 
 ```
-src/
-├── app/              # Next.js app directory
-├── ui/               # React components
-│   ├── search/       # Search-related components
-│   ├── assets/       # Icons and assets
+the-movie-db-explorer-project/
+├── .next/                   # Next.js build files
+├── coverage/                # Test coverage reports
+├── messages/                # Message files (i18n)
+├── node_modules/            # Project dependencies
+├── public/                  # Static files (images, fonts, etc.)
+├── src/
+│   ├── app/                 # Main Next.js application directory
+│   │   ├── [locale]/        # Localization handling (i18n)
+│   │   │   ├── page.tsx     # Homepage
+│   │   │   ├── layout.tsx   # Main layout
+│   │   │   └── ...
+│   │   └── ...
+│   ├── lib/
+│   │   ├── types/           # TypeScript type definitions
+│   │   ├── data.ts          # Data-related functions
+│   │   ├── utils.ts         # Utility functions
+│   │   └── ...
+│   ├── ui/                  # React components
+│   │   ├── assets/          # Icons, images, and assets
+│   │   └── ...
+│   ├── middleware.ts        # Next.js middleware (e.g., localization handling)
 │   └── ...
-├── lib/              # Utility functions
-└── types/            # TypeScript type definitions
+├── .env.example             # Example environment variables file
+├── .env.test                # Environment variables for testing
+├── .eslintrc.json           # ESLint configuration
+├── .gitignore               # Git ignored files
+├── next.config.js           # Next.js configuration
+├── package.json             # npm dependencies and scripts
+├── tsconfig.json            # TypeScript configuration
+├── vitest.config.ts         # Vitest configuration
+└── README.md                # Project documentation
 ```
 
 ## Testing
