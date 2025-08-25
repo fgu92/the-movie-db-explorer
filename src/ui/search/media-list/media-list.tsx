@@ -16,7 +16,7 @@ export default async function MediaList({
   return (
     <div
       className={clsx(
-        "grid grid-cols-2 xl:grid-cols-5 items-center justify-items-center gap-4",
+        "grid grid-cols-2 items-center justify-items-center gap-4 xl:grid-cols-5",
         className,
       )}
     >

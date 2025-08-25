@@ -2,7 +2,6 @@ import Header from "@/ui/search/header";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-// Mock défini directement dans la factory function pour éviter les problèmes de hoisting
 vi.mock("@/ui/language-switcher", () => ({
   default: () => <div data-testid="language-switcher"></div>,
 }));

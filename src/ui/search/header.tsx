@@ -7,7 +7,7 @@ interface HeaderProps {
 
 export default function Header({ className }: HeaderProps) {
   return (
-    <header className={clsx("text-xl justify-self-end p-4", className)}>
+    <header className={clsx("justify-self-end p-4 text-xl", className)}>
       <LanguageSwitcher />
     </header>
   );

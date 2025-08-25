@@ -12,7 +12,7 @@ export default function Footer({ className }: FooterProps) {
   return (
     <footer
       className={clsx(
-        "flex flex-col gap-2 items-center justify-center",
+        "flex flex-col items-center justify-center gap-2",
         className,
       )}
     >

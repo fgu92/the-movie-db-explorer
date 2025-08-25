@@ -30,7 +30,7 @@ export default async function Home(props: {
   ) : null;
 
   return (
-    <main className="flex flex-col gap-8 pt-8 pb-8 items-center">
+    <main className="flex flex-col items-center gap-8 pt-8 pb-8">
       <Search className="pb-12" />
 
       {hasResults ? (
@@ -40,7 +40,7 @@ export default async function Home(props: {
           {PaginationComponent}
         </>
       ) : (
-        <div className="flex flex-col items-center gap-4 text-center max-w-md">
+        <div className="flex max-w-md flex-col items-center gap-4 text-center">
           <div className="text-6xl">🎬</div>
           <h2 className="text-2xl font-semibold text-gray-700">
             {t("no-results")}

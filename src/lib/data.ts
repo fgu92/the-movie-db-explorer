@@ -31,7 +31,11 @@ const config = {
 };
 
 // Mettre à jour la liste des variables requises
-const requiredEnvVars = ["TMDB_API_KEY", "TMDB_BASE_URL"] as const; // <-- Noms réels
+const requiredEnvVars = [
+  "TMDB_API_KEY",
+  "TMDB_BASE_URL",
+  "TMDB_IMAGES_BASE_URL",
+] as const; // <-- Noms réels
 for (const key of requiredEnvVars) {
   if (!process.env[key]) {
     // <-- Vérifie directement dans process.env

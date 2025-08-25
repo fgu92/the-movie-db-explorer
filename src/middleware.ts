@@ -1,14 +1,12 @@
 import createMiddleware from "next-intl/middleware";
 
 export default createMiddleware({
-  // Liste des locales supportées
+  // List of supported locales
   locales: ["en", "fr"],
-
-  // Locale par défaut
+  // Default locale
   defaultLocale: "en",
 });
-
 export const config = {
-  // Matcher pour toutes les routes sauf les fichiers statiques
+  // Matcher for all routes except static files
   matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
 };

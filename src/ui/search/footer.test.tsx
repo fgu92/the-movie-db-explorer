@@ -2,7 +2,6 @@ import Footer from "@/ui/search/footer";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-// Mock doit être défini avant l'import ou dans la factory function
 vi.mock("@/ui/assets/icons/tmdb-logo", () => ({
   default: (props: { width: string }) => (
     <div data-testid="tmdb-logo" {...props}></div>

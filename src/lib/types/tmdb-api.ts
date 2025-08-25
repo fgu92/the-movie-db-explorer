@@ -1,18 +1,7 @@
-// Types pour l'API TMDB Discover & Search (Movies & TV Shows)
-// URLs de base :
-// - https://api.themoviedb.org/3/discover/{movie|tv}
-// - https://api.themoviedb.org/3/search/{movie|tv}
-
-// =============================================
-// Types utilitaires et de base
-// =============================================
-
 import { DateString, Movie, TVShow } from "./tmdb-media";
 
-/** Type pour les IDs séparés par des virgules ou des pipes */
 type CommaOrPipeSeparatedIds = string;
 
-/** Types pour les statuts de séries TV */
 export type TVStatus =
   | "0" // Returning Series
   | "1" // Planned
@@ -21,7 +10,6 @@ export type TVStatus =
   | "4" // Cancelled
   | "5"; // Pilot
 
-/** Types pour les catégories de séries TV */
 export type TVType =
   | "0" // Documentary
   | "1" // News
@@ -31,19 +19,16 @@ export type TVType =
   | "5" // Talk Show
   | "6"; // Video
 
-/** Types de monétisation des fournisseurs de visionnage */
 export type WatchMonetizationType =
-  | "flatrate"
-  | "free"
-  | "ads"
-  | "rent"
-  | "buy";
+  | "flatrate" // Subscription
+  | "free" // Free with ads
+  | "ads" // Ad-supported
+  | "rent" // Rentable
+  | "buy"; // Purchase
 
 // =============================================
-// Types de tri
+// Sort types
 // =============================================
-
-/** Options de tri communes à tous les médias */
 export type SortBy =
   | "popularity.asc"
   | "popularity.desc"
@@ -54,7 +39,6 @@ export type SortBy =
   | "original_title.asc"
   | "original_title.desc";
 
-/** Options de tri spécifiques aux films */
 export type MovieSortBy =
   | SortBy
   | "release_date.asc"
@@ -64,218 +48,103 @@ export type MovieSortBy =
   | "primary_release_date.asc"
   | "primary_release_date.desc";
 
-/** Options de tri spécifiques aux séries TV */
 export type TVSortBy = SortBy | "first_air_date.asc" | "first_air_date.desc";
 
 // =============================================
-// Paramètres de requête
+// Query parameters
 // =============================================
-
-/** Paramètres de base pour la recherche */
 export interface BaseSearchParams {
-  /** Clé API TMDB */
   api_key?: string;
-  /** Terme de recherche (requis) */
-  query: string;
-  /** Langue pour les métadonnées (ex: 'fr-FR', 'en-US') */
-  language?: string;
-  /** Code de région ISO 3166-1 (ex: 'US', 'FR') */
-  region?: string;
-  /** Numéro de page (minimum 1, maximum 1000) */
-  page?: number;
-  /** Inclure les contenus pour adultes */
+  query: string; // Required search term
+  language?: string; // ISO 639-1 language code (e.g., 'fr-FR')
+  region?: string; // ISO 3166-1 region code (e.g., 'US')
+  page?: number; // 1-1000
   include_adult?: boolean;
 }
 
-/** Paramètres de base pour la découverte de médias */
 export interface BaseDiscoverParams {
-  /** Clé API TMDB */
   api_key?: string;
-  /** Langue pour les métadonnées (ex: 'fr-FR', 'en-US') */
-  language?: string;
-  /** Code de région ISO 3166-1 (ex: 'US', 'FR') */
-  region?: string;
-  /** Numéro de page (minimum 1, maximum 1000) */
-  page?: number;
-  /** Inclure les contenus pour adultes */
+  language?: string; // ISO 639-1 language code
+  region?: string; // ISO 3166-1 region code
+  page?: number; // 1-1000
   include_adult?: boolean;
-  /** Note moyenne minimum (0-10) */
-  "vote_average.gte"?: number;
-  /** Note moyenne maximum (0-10) */
-  "vote_average.lte"?: number;
-  /** Nombre de votes minimum */
-  "vote_count.gte"?: number;
-  /** Nombre de votes maximum */
-  "vote_count.lte"?: number;
-  /** Genres inclus (IDs séparés par des virgules pour AND, par des pipes pour OR) */
-  with_genres?: CommaOrPipeSeparatedIds;
-  /** Genres exclus (IDs séparés par des virgules) */
-  without_genres?: CommaOrPipeSeparatedIds;
-  /** Mots-clés inclus (IDs séparés par des virgules pour AND, par des pipes pour OR) */
-  with_keywords?: CommaOrPipeSeparatedIds;
-  /** Mots-clés exclus (IDs séparés par des virgules) */
-  without_keywords?: CommaOrPipeSeparatedIds;
-  /** Compagnies de production (IDs séparés par des virgules pour AND, par des pipes pour OR) */
-  with_companies?: CommaOrPipeSeparatedIds;
-  /** Compagnies exclues (IDs séparés par des virgules) */
-  without_companies?: CommaOrPipeSeparatedIds;
-  /** Personnes dans le casting ou l'équipe (IDs séparés par des virgules pour AND, par des pipes pour OR) */
-  with_people?: CommaOrPipeSeparatedIds;
-  /** Personnes dans le casting (IDs séparés par des virgules pour AND, par des pipes pour OR) */
-  with_cast?: CommaOrPipeSeparatedIds;
-  /** Personnes dans l'équipe (IDs séparés par des virgules pour AND, par des pipes pour OR) */
-  with_crew?: CommaOrPipeSeparatedIds;
-  /** Durée minimum en minutes */
-  "with_runtime.gte"?: number;
-  /** Durée maximum en minutes */
-  "with_runtime.lte"?: number;
-  /** Pays d'origine (codes ISO 3166-1, séparés par des virgules) */
-  with_origin_country?: CommaOrPipeSeparatedIds;
-  /** Langue originale (codes ISO 639-1) */
-  with_original_language?: string;
-  /** Fournisseurs de visionnage (Watch Providers) */
+  "vote_average.gte"?: number; // Minimum rating (0-10)
+  "vote_average.lte"?: number; // Maximum rating (0-10)
+  "vote_count.gte"?: number; // Minimum vote count
+  "vote_count.lte"?: number; // Maximum vote count
+  with_genres?: CommaOrPipeSeparatedIds; // Comma for AND, pipe for OR
+  without_genres?: CommaOrPipeSeparatedIds; // Comma-separated
+  with_keywords?: CommaOrPipeSeparatedIds; // Comma for AND, pipe for OR
+  without_keywords?: CommaOrPipeSeparatedIds; // Comma-separated
+  with_companies?: CommaOrPipeSeparatedIds; // Comma for AND, pipe for OR
+  without_companies?: CommaOrPipeSeparatedIds; // Comma-separated
+  with_people?: CommaOrPipeSeparatedIds; // Comma for AND, pipe for OR
+  with_cast?: CommaOrPipeSeparatedIds; // Comma for AND, pipe for OR
+  with_crew?: CommaOrPipeSeparatedIds; // Comma for AND, pipe for OR
+  "with_runtime.gte"?: number; // Minimum runtime in minutes
+  "with_runtime.lte"?: number; // Maximum runtime in minutes
+  with_origin_country?: CommaOrPipeSeparatedIds; // ISO 3166-1 codes
+  with_original_language?: string; // ISO 639-1 code
   with_watch_providers?: CommaOrPipeSeparatedIds;
-  /** Région des fournisseurs de visionnage */
-  watch_region?: string;
-  /** Types de monétisation des fournisseurs de visionnage */
+  watch_region?: string; // ISO 3166-1 region code
   with_watch_monetization_types?: WatchMonetizationType;
 }
 
-/** Paramètres spécifiques à la découverte de films */
 export interface DiscoverMovieParams extends BaseDiscoverParams {
-  /** Critère de tri spécifique aux films */
   sort_by?: MovieSortBy;
-  /** Inclure les vidéos */
   include_video?: boolean;
-  /** Année de sortie principale */
   primary_release_year?: number;
-  /** Date de sortie principale (>=) au format YYYY-MM-DD */
-  "primary_release_date.gte"?: DateString;
-  /** Date de sortie principale (<=) au format YYYY-MM-DD */
-  "primary_release_date.lte"?: DateString;
-  /** Année de sortie */
+  "primary_release_date.gte"?: DateString; // YYYY-MM-DD
+  "primary_release_date.lte"?: DateString; // YYYY-MM-DD
   year?: number;
-  /** Date de sortie (>=) au format YYYY-MM-DD */
-  "release_date.gte"?: DateString;
-  /** Date de sortie (<=) au format YYYY-MM-DD */
-  "release_date.lte"?: DateString;
-  /** Types de sortie (1=Premiere, 2=Theatrical (limited), 3=Theatrical, 4=Digital, 5=Physical, 6=TV) */
-  with_release_type?: string;
-  /** Certifications de contenu (ex: 'US:G,US:PG', 'FR:U') */
-  certification?: string;
-  /** Pays de certification (code ISO 3166-1) */
-  certification_country?: string;
-  /** Certification inférieure ou égale à */
+  "release_date.gte"?: DateString; // YYYY-MM-DD
+  "release_date.lte"?: DateString; // YYYY-MM-DD
+  with_release_type?: string; // 1=Premiere, 2=Theatrical (limited), 3=Theatrical, 4=Digital, 5=Physical, 6=TV
+  certification?: string; // e.g., 'US:G,US:PG'
+  certification_country?: string; // ISO 3166-1 code
   "certification.lte"?: string;
-  /** Certification supérieure ou égale à */
   "certification.gte"?: string;
-  /** Revenus minimum */
-  "revenue.gte"?: number;
-  /** Revenus maximum */
-  "revenue.lte"?: number;
+  "revenue.gte"?: number; // Minimum revenue
+  "revenue.lte"?: number; // Maximum revenue
 }
 
-/** Paramètres spécifiques à la découverte de séries TV */
 export interface DiscoverTVParams extends BaseDiscoverParams {
-  /** Critère de tri spécifique aux séries TV */
   sort_by?: TVSortBy;
-  /** Date de première diffusion (>=) au format YYYY-MM-DD */
-  "first_air_date.gte"?: DateString;
-  /** Date de première diffusion (<=) au format YYYY-MM-DD */
-  "first_air_date.lte"?: DateString;
-  /** Année de première diffusion */
+  "first_air_date.gte"?: DateString; // YYYY-MM-DD
+  "first_air_date.lte"?: DateString; // YYYY-MM-DD
   first_air_date_year?: number;
-  /** Date de dernière diffusion (>=) au format YYYY-MM-DD */
-  "air_date.gte"?: DateString;
-  /** Date de dernière diffusion (<=) au format YYYY-MM-DD */
-  "air_date.lte"?: DateString;
-  /** Statut de diffusion */
+  "air_date.gte"?: DateString; // YYYY-MM-DD
+  "air_date.lte"?: DateString; // YYYY-MM-DD
   with_status?: TVStatus;
-  /** Type de série */
   with_type?: TVType;
-  /** Réseaux de diffusion (IDs séparés par des virgules pour AND, par des pipes pour OR) */
-  with_networks?: CommaOrPipeSeparatedIds;
-  /** Réseaux de diffusion exclus (IDs séparés par des virgules) */
-  without_networks?: CommaOrPipeSeparatedIds;
-  /** Timezone pour les dates de diffusion */
-  timezone?: string;
-  /** Inclure les séries avec épisodes nulls */
+  with_networks?: CommaOrPipeSeparatedIds; // Comma for AND, pipe for OR
+  without_networks?: CommaOrPipeSeparatedIds; // Comma-separated
+  timezone?: string; // e.g., 'America/New_York'
   include_null_first_air_dates?: boolean;
-  /** Nombre minimum d'épisodes */
-  "with_episode_count.gte"?: number;
-  /** Nombre maximum d'épisodes */
-  "with_episode_count.lte"?: number;
+  "with_episode_count.gte"?: number; // Minimum episode count
+  "with_episode_count.lte"?: number; // Maximum episode count
 }
 
-/** Paramètres spécifiques à la recherche de films */
 export interface SearchMovieParams extends BaseSearchParams {
-  /** Année de sortie principale */
   primary_release_year?: number;
-  /** Année de sortie */
-  year?: string;
+  year?: string; // Release year
 }
 
-/** Paramètres spécifiques à la recherche de séries TV */
 export interface SearchTVParams extends BaseSearchParams {
-  /** Année de première diffusion */
-  first_air_date_year?: number;
+  first_air_date_year?: number; // First air date year
 }
 
 // =============================================
-// Réponses de l'API
+// API responses
 // =============================================
-
-/** Réponse générique pour les APIs Discover et Search */
 export interface BaseDiscoverResponse<T> {
-  /** Numéro de page actuelle */
   page: number;
-  /** Nombre total de résultats */
   total_results: number;
-  /** Nombre total de pages */
   total_pages: number;
-  /** Liste des résultats */
   results: T[];
 }
 
-/** Réponse de l'API Discover Movie */
 export type DiscoverMovieResponse = BaseDiscoverResponse<Movie>;
-
-/** Réponse de l'API Discover TV */
 export type DiscoverTVResponse = BaseDiscoverResponse<TVShow>;
-
-/** Réponse de l'API Search Movie */
 export type SearchMovieResponse = BaseDiscoverResponse<Movie>;
-
-/** Réponse de l'API Search TV */
 export type SearchTVResponse = BaseDiscoverResponse<TVShow>;
-
-// =============================================
-// Types pour les genres
-// =============================================
-
-/** Structure d'un genre */
-export interface Genre {
-  /** ID du genre */
-  id: number;
-  /** Nom du genre */
-  name: string;
-}
-
-/** Réponse de l'API des genres */
-export interface GenresResponse {
-  genres: Genre[];
-}
-
-// =============================================
-// Types pour les erreurs de l'API
-// =============================================
-
-/** Structure d'erreur retournée par l'API TMDB */
-export interface TMDBError {
-  /** Statut de l'erreur */
-  status_code: number;
-  /** Message d'erreur */
-  status_message: string;
-  /** Succès de la requête */
-  success: boolean;
-}

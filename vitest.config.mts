@@ -7,6 +7,6 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     globals: true,
-    setupFiles: ["./setupTests.ts"], // Charge les variables avant les tests
+    setupFiles: ["./setupTests.ts"], // load variables before tests
   },
 });

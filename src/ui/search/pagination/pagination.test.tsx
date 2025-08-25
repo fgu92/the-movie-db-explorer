@@ -2,20 +2,17 @@ import Pagination from "@/ui/search/pagination/pagination";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-// Mock Next.js navigation hooks
 vi.mock("next/navigation", () => ({
   usePathname: () => "/movies",
   useSearchParams: () => new URLSearchParams([["page", "2"]]),
 }));
 
-// Mock PaginationArrow défini directement dans la factory function
 vi.mock("@/ui/search/pagination/pagination-arrow", () => ({
   default: (props: { direction: "left" | "right" }) => (
     <div data-testid={`arrow-${props.direction}`}></div>
   ),
 }));
 
-// Mock PaginationNumber défini directement dans la factory function
 vi.mock("@/ui/search/pagination/pagination-number", () => ({
   default: (props: { page: number | string }) => (
     <div data-testid={`number-${props.page}`}></div>

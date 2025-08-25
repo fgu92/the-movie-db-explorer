@@ -1,9 +1,7 @@
+import { Movie, TVShow } from "@/lib/types/tmdb-media";
 import MediaList from "@/ui/search/media-list/media-list";
 import { render, screen } from "@testing-library/react";
-import {
-  Movie,
-  TVShow,
-} from "../../../../../the-movie-db-explorer-project/src/lib/types/tmdb-media";
+import { describe, expect, it } from "vitest";
 
 describe("MediaList", () => {
   const mockMovie: Movie = {

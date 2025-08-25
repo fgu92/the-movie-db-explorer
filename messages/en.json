@@ -1,6 +1,6 @@
 {
   "SearchPage": {
-    "votes": "{voteAverage, number} {count, plural, one {# vote} other {# votes}}",
+    "votes": "{voteAverage, number} ({count, plural, one {# vote} other {# votes}})",
     "movies-placeholder": "Search for a movie",
     "tv-shows-placeholder": "Search for a TV show",
     "media-type-select-label": "Media type",

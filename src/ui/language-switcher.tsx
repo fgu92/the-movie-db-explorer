@@ -31,10 +31,10 @@ export default function LanguageSwitcher({ className }: LanguageSwitcherProps) {
       <button
         onClick={locale === "fr" ? undefined : () => switchToLocale("fr")}
         className={clsx(
-          "px-1 py-0.5 rounded",
+          "rounded px-1 py-0.5",
           locale === "fr"
-            ? "text-gray-500 cursor-default"
-            : "underline cursor-pointer hover:text-blue-600",
+            ? "cursor-default text-gray-500"
+            : "cursor-pointer underline hover:text-blue-600",
         )}
         aria-label={t("switch-to-french")}
         disabled={locale === "fr"}
@@ -47,10 +47,10 @@ export default function LanguageSwitcher({ className }: LanguageSwitcherProps) {
       <button
         onClick={locale === "en" ? undefined : () => switchToLocale("en")}
         className={clsx(
-          "px-1 py-0.5 rounded",
+          "rounded px-1 py-0.5",
           locale === "en"
-            ? "text-gray-500 cursor-default"
-            : "underline cursor-pointer hover:text-blue-600",
+            ? "cursor-default text-gray-500"
+            : "cursor-pointer underline hover:text-blue-600",
         )}
         aria-label={t("switch-to-english")}
         disabled={locale === "en"}

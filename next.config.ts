@@ -15,13 +15,18 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // Configuration webpack pour résoudre les problèmes de cache
   webpack: (config, { dev }) => {
-    if (dev && config.cache) {
-      // En développement, utilise le cache en mémoire plutôt que sur disque
-      config.cache = {
-        type: "memory",
-      };
+    /**
+     * Workaround for webpack cache issues in Next.js 15.5.0.
+     * - In development: Uses in-memory cache for faster rebuilds.
+     * - In production: Disables cache entirely to avoid filesystem/snapshot errors.
+     * Note: Filesystem cache should work in theory, but may fail silently due to permissions,
+     * plugin conflicts, or Next.js 15.5.0 bugs. Disabling cache ensures a stable production build.
+     */
+    if (dev) {
+      config.cache = { type: "memory" };
+    } else {
+      config.cache = false;
     }
     return config;
   },

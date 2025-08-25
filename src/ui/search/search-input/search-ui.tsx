@@ -1,6 +1,6 @@
 import ChevronDownIcon from "@/ui/assets/icons/chevron-down-Icon";
-import { useTranslations } from "next-intl";
 import clsx from "clsx";
+import { useTranslations } from "next-intl";
 
 interface SearchUIProps {
   className?: string;

@@ -13,12 +13,12 @@ export function PosterPlaceholder({
   return (
     <div
       className={clsx(
-        "relative flex flex-col aspect-[2/3] justify-center items-center bg-gray-200 rounded-sm max-w-[300px]",
+        "relative flex aspect-[2/3] max-w-[300px] flex-col items-center justify-center rounded-sm bg-gray-200",
         className,
       )}
     >
-      <PhotoIcon className="w-20 h-20 mb-3 text-gray-400" />
-      <div className="text-sm font-medium text-gray-600 px-4 text-center leading-tight">
+      <PhotoIcon className="mb-3 h-20 w-20 text-gray-400" />
+      <div className="px-4 text-center text-sm leading-tight font-medium text-gray-600">
         {title}
       </div>
     </div>

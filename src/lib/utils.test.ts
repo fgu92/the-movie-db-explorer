@@ -1,24 +1,24 @@
-import { generatePagination, getYearFromDateString } from "@/lib/utils"; // Ajuste le chemin selon ton fichier
+import { generatePagination, getYearFromDateString } from "@/lib/utils"; // Adjust path as needed
 import { describe, expect, it } from "vitest";
 
 describe("utils", () => {
   describe("generatePagination", () => {
-    it("devrait retourner toutes les pages si totalPages ≤ 7", () => {
+    it("should return all pages if totalPages ≤ 7", () => {
       const result = generatePagination(1, 5);
       expect(result).toEqual([1, 2, 3, 4, 5]);
     });
 
-    it("devrait retourner les 3 premières pages, ..., et les 2 dernières si currentPage ≤ 3", () => {
+    it("should return first 3 pages, ..., and last 2 pages if currentPage ≤ 3", () => {
       const result = generatePagination(2, 10);
       expect(result).toEqual([1, 2, 3, "...", 9, 10]);
     });
 
-    it("devrait retourner les 2 premières pages, ..., et les 3 dernières si currentPage ≥ totalPages - 2", () => {
+    it("should return first 2 pages, ..., and last 3 pages if currentPage ≥ totalPages - 2", () => {
       const result = generatePagination(8, 10);
       expect(result).toEqual([1, 2, "...", 8, 9, 10]);
     });
 
-    it("devrait retourner la première page, ..., la page courante et ses voisins, ..., et la dernière page (cas général)", () => {
+    it("should return first page, ..., current page and neighbors, ..., and last page (general case)", () => {
       const result = generatePagination(5, 10);
       expect(result).toEqual([1, "...", 4, 5, 6, "...", 10]);
     });
