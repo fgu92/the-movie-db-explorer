@@ -1,5 +1,7 @@
 {
   "SearchPage": {
+    "title": "Rechercher des films ou des séries",
+    "description": "Rechercher des films ou des séries",
     "votes": "{voteAverage, number} ({count, plural, one {# vote} other {# votes}})",
     "movies-placeholder": "Rechercher un film",
     "tv-shows-placeholder": "Rechercher une série TV",

@@ -4,21 +4,34 @@ import Footer from "@/ui/search/footer";
 import Header from "@/ui/search/header";
 import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import "@/app/globals.css";
+import { ReactNode } from "react";
 
-export const metadata: Metadata = {
-  title: "Search movies or TV shows",
-  description: "Search movies or TV shows",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "SearchPage" });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
+
+export interface RootLayoutProps {
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
+}
 
 export default async function RootLayout({
   children,
   params,
-}: Readonly<{
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}>) {
+}: RootLayoutProps) {
   // Ensure that the incoming `locale` is valid
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {

@@ -1,5 +1,7 @@
 {
   "SearchPage": {
+    "title": "Search movies or TV shows",
+    "description": "Search movies or TV shows",
     "votes": "{voteAverage, number} ({count, plural, one {# vote} other {# votes}})",
     "movies-placeholder": "Search for a movie",
     "tv-shows-placeholder": "Search for a TV show",
