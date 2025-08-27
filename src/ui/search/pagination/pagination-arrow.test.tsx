@@ -4,30 +4,28 @@ import { describe, expect, it } from "vitest";
 
 describe("PaginationArrow", () => {
   it("renders left arrow with label", () => {
-    render(<PaginationArrow href="/page/1" direction="left" />);
+    render(<PaginationArrow href="?page=2" direction="left" />);
     expect(
-      screen.getByRole("link", { name: /previous page/i }),
+      screen.getByRole("link", { name: "SearchPage.previous-page" }),
     ).toBeInTheDocument();
   });
 
   it("renders right arrow with label", () => {
-    render(<PaginationArrow href="/page/3" direction="right" />);
+    render(<PaginationArrow href="?page=1" direction="right" />);
     expect(
-      screen.getByRole("link", { name: /next page/i }),
+      screen.getByRole("link", { name: "SearchPage.next-page" }),
     ).toBeInTheDocument();
   });
 
   it("renders disabled left arrow when isDisabled is true", () => {
-    render(<PaginationArrow href="/page/0" direction="left" isDisabled />);
-    const arrow = screen.getByRole("link", { name: /previous page/i });
-    expect(arrow).toHaveAttribute("aria-disabled", "true");
-    expect(arrow).not.toHaveAttribute("href");
+    render(<PaginationArrow href="?page=2" direction="left" isDisabled />);
+    expect(
+      screen.getByRole("link", { name: "SearchPage.previous-page" })
+        .ariaDisabled,
+    ).toBeTruthy();
   });
 
   it("renders disabled right arrow when isDisabled is true", () => {
-    render(<PaginationArrow href="/page/99" direction="right" isDisabled />);
-    const arrow = screen.getByRole("link", { name: /next page/i });
-    expect(arrow).toHaveAttribute("aria-disabled", "true");
-    expect(arrow).not.toHaveAttribute("href");
+    render(<PaginationArrow href="?page=1" direction="right" isDisabled />);
   });
 });

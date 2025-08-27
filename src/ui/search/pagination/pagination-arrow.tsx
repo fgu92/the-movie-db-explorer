@@ -1,6 +1,7 @@
-import clsx from "clsx";
-import Link from "next/link";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
+import clsx from "clsx";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 interface PaginationArrowProps {
   href: string;
@@ -13,6 +14,7 @@ export default function PaginationArrow({
   direction,
   isDisabled = false,
 }: PaginationArrowProps) {
+  const t = useTranslations("SearchPage");
   const className = clsx(
     "flex h-10 w-10 items-center justify-center rounded-md border",
     {
@@ -30,7 +32,7 @@ export default function PaginationArrow({
       <ArrowRightIcon className="w-4" />
     );
 
-  const label = direction === "left" ? "Previous page" : "Next page";
+  const label = direction === "left" ? t("previous-page") : t("next-page");
 
   if (isDisabled) {
     return (
